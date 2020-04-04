@@ -47,4 +47,10 @@ public class OwnerFilter implements Filter {
 
 	}
 
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		Filter.super.destroy();
+	}
+	
 }

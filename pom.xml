@@ -4,13 +4,13 @@
   <artifactId>MyClinicApp</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
+  
   <dependencies>
-  <dependency>
-  <groupId>javax.servlet</groupId>
-  <artifactId>javax.servlet-api</artifactId>
-  <version>3.0.1</version>
-  <scope>provided</scope>
-  </dependency>
+  	<dependency>
+  		<groupId>org.mybatis</groupId>
+		  <artifactId>mybatis</artifactId>
+		  <version>3.3.0</version>
+  	</dependency>
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>

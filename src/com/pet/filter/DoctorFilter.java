@@ -14,6 +14,12 @@ import javax.servlet.annotation.WebFilter;
 public class DoctorFilter implements Filter {
 
 	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		Filter.super.destroy();
+	}
+
+	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
 		System.out.println("do u filter");
