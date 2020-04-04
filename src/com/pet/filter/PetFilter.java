@@ -7,6 +7,7 @@ import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -16,16 +17,17 @@ import javax.servlet.annotation.WebFilter;
 @WebFilter(urlPatterns = "/petregisterPath")
 public class PetFilter implements Filter {
 
+	private ServletContext context;
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
-		Filter.super.init(filterConfig);
+		this.context = filterConfig.getServletContext();
+		this.context.log("PetFilter initialized");
 	}
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
-		Filter.super.destroy();
+		// close resource here.
 	}
 
 	@Override
