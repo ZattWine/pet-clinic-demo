@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletException;
@@ -14,6 +15,12 @@ import javax.servlet.annotation.WebFilter;
 
 @WebFilter(urlPatterns = "/petregisterPath")
 public class PetFilter implements Filter {
+
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		// TODO Auto-generated method stub
+		Filter.super.init(filterConfig);
+	}
 
 	@Override
 	public void destroy() {

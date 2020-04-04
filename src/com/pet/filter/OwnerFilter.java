@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -12,6 +13,18 @@ import javax.servlet.annotation.WebFilter;
 
 @WebFilter(urlPatterns = "/ownerPath")
 public class OwnerFilter implements Filter {
+	
+	@Override
+	public void destroy() {
+		// TODO Auto-generated method stub
+		Filter.super.destroy();
+	}
+
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		// TODO Auto-generated method stub
+		Filter.super.init(filterConfig);
+	}
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
@@ -45,12 +58,6 @@ public class OwnerFilter implements Filter {
 			chain.doFilter(req, resp);
 		}
 
-	}
-
-	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-		Filter.super.destroy();
 	}
 	
 }
