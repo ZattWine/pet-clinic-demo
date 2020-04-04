@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC '-//mybatis.org//DTD Config 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-config.dtd'>
+<configuration>
+	<properties resource="database.properties"/>
+	<typeAliases>
+	    <typeAlias type="com.pet.model.Login" alias="aliasLogin"/>
+		 <typeAlias type="com.pet.model.RegisterOwner" alias="aliasOwner"/>
+		 <typeAlias type="com.pet.model.RegisterDoctor" alias="aliasDoctor"/>
+		  <typeAlias type="com.pet.model.PetSpecies" alias="aliasSpecies"/>
+		  <typeAlias type="com.pet.model.PetRegister" alias="aliasPet"/>
+		  <typeAlias type="com.pet.model.AdminPassword" alias="aliasAdminPassword"/>
+		 <typeAlias type="com.pet.model.PetById" alias="aliasPetById"/>
+		   <typeAlias type="com.pet.model.PetUpdate" alias="aliaspetUpdate"/>
+		    <typeAlias type="com.pet.model.MakeAppointment" alias="aliasMakeAppointment"/>
+		    <typeAlias type="com.pet.model.DoctorSchedule" alias="aliasSchedule"/>
+		      <typeAlias type="com.pet.model.DrugType" alias="aliasDrugType"/>
+		       <typeAlias type="com.pet.model.PetDrug" alias="aliasPetDrug"/>
+		        <typeAlias type="com.pet.model.DrugType" alias="aliasDrugType"/>
+	</typeAliases>	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type='JDBC'/>
+			<dataSource type='POOLED'>
+				<property name="driver" value="${jdbc.driverClassName}"/>
+				<property name="url" value="${jdbc.url}"/>
+				<property name="username" value="${jdbc.username}"/>
+				<property name="password" value="${jdbc.password}"/>				
+			</dataSource>
+		</environment>	
+	</environments>
+	<mappers>
+		<mapper resource="com/pet/mapper/PetMapper.xml"/>
+		
+	</mappers>
+</configuration>	
+
+
+
+
+

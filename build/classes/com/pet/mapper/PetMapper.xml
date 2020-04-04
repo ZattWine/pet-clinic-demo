@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC '-//mybatis.org//DTD Mapper 3.0/EN'
+'http://mybatis.org/dtd/mybatis-3-mapper.dtd'>
+<mapper namespace="com.pet.mapper.PetMapper">
+
+
+	<resultMap id="petLogin" type="aliasLogin">
+
+		<result column="login_id" property="loginId" />
+		<result column="login_password" property="loginPassword" />
+
+	</resultMap>
+	<select id="getAll" resultMap="petLogin">
+		select * from pet_login
+	</select>
+
+	<resultMap id="Allappointment" type="aliasMakeAppointment">
+
+		<result column="app_id" property="appId" />
+		<result column="app_date" property="appDate" />
+         <result column="app_time" property="appTime" />
+         <result column="owner_id" property="ownerId" />       
+	</resultMap>
+	<select id="getAllAppointment" resultMap="Allappointment">
+		select * from appointment
+	</select>
+	
+	<insert id="processSaveOwner" parameterType="aliasOwner"
+		useGeneratedKeys="true" keyProperty="ownerId">
+		insert into owner values
+		(#{ownerId},#{ownerName},#{ownerPhone},#{ownerEmail},#{ownerAddress})
+	</insert>
+	<resultMap id="myPetList" type="aliasPetById">
+		<result column="pet_id" property="petId" />
+		<result column="pet_name" property="petName" />
+        <result column="pet_sex" property="petSex" />
+		<result column="pet_birth" property="petBirth" />
+		<result column="pet_death" property="petDeath" />
+		<result column="species_id" property="speciesId" />
+		<result column="owner_id" property="ownerID" />
+			
+	</resultMap>
+	<select id="getPetById" resultMap="myPetList" parameterType="String">
+		select * from pet where pet_id=#{petId}
+	</select>
+	<insert id="processSaveDoctor" parameterType="aliasDoctor"
+		useGeneratedKeys="true" keyProperty="doctorId">
+		insert into doctor values
+		(#{doctorId},#{doctorName},#{doctorRank})
+	</insert>
+	<insert id="processSavePet" parameterType="aliasPet"
+		useGeneratedKeys="true" keyProperty="petId">
+		insert into pet values
+		(#{petId},#{petName},#{petSex},#{petBirth},#{petDeath},#{speciesId},#{ownerID})
+	</insert>
+	<insert id="processSaveDrugType" parameterType="aliasDrugType"
+		useGeneratedKeys="true" keyProperty="drugId">
+		insert into drug_type values
+		(#{drugId},#{drugName},#{drugDuration},#{drugdurationType})
+		
+	</insert>
+	
+<insert id="processMakeAppointment" parameterType="aliasMakeAppointment"
+		useGeneratedKeys="true" keyProperty="appId">
+		insert into appointment values
+		(#{appId},#{appDate},#{appTime},#{ownerId})
+	</insert>
+	<resultMap id="petSpecies" type="aliasSpecies">
+
+		<result column="species_id" property="speciesId" />
+		<result column="species_name" property="speciesName" />
+
+	</resultMap>
+	<select id="getAllSpecies" resultMap="petSpecies">
+		select * from species
+	</select>
+	<insert id="processSavePetDrug" parameterType="aliasPetDrug"
+		useGeneratedKeys="true" keyProperty="petdrugId">
+		insert into pet_drug values
+		(#{petdrugId},#{drugDate},#{drugnextDate},#{drugDesc},#{petId},#{drugId},#{doctorId})
+	</insert>
+	<resultMap id="petDrug" type="aliasPetDrug">
+
+		<result column="id" property="petdrugId" />
+		<result column="drug_date" property="drugDate" />
+<result column="drug_next_date" property="drugnextDate" />
+<result column="drug_desc" property="drugDesc" />
+<result column="pet_id" property="petId" />
+<result column="drug_id" property="drugId" />
+<result column="doctor_id" property="doctorId" />
+	</resultMap>
+	<select id="getAllDrugList" resultMap="petDrug">
+		select * from pet_drug
+	</select>
+	
+	<update id="processUpdateAdmin" parameterType="aliasAdminPassword">
+		update pet_login set 
+				login_password=#{adminPassword}
+				
+		where	login_id=#{adminId}		
+	</update>
+	<update id="processUpdateDoctor" parameterType="aliasAdminPassword">
+		update pet_login set 
+				login_password=#{adminPassword}
+				
+		where	login_id=#{adminId}		
+	</update>
+	<update id="processUpdateOwner" parameterType="aliasAdminPassword">
+		update pet_login set 
+				login_password=#{adminPassword}
+				
+		where	login_id=#{adminId}		
+	</update>
+	<resultMap id="doctorSchedule" type="aliasSchedule">
+
+		<result column="schedule_id" property="scheduleId" />
+		<result column="day_name" property="dayName" />
+<result column="start_time" property="startTime" />
+<result column="end_time" property="endTime" />
+<result column="doctor_id" property="doctorId" />
+	</resultMap>
+	<select id="getAllSchedule" resultMap="doctorSchedule">
+		select * from doctor_schedule
+	</select>
+	<resultMap id="drugtime" type="aliasDrugType">
+
+		<result column="drug_id" property="drugId" />
+		<result column="drug_name" property="drugName" />
+<result column="drug_duration" property="drugDuration" />
+<result column="drug_duration_type" property="drugdurationType" />
+
+	</resultMap>
+	<select id="getAllDrugTime" resultMap="drugtime">
+		select * from drug_type;
+	</select>
+		<update id="processUpdatePet" parameterType="aliaspetUpdate">
+		update pet set 
+				pet_name=#{petName},
+				pet_sex=#{petSex}
+				
+				
+		where	pet_id=#{petId}		
+	</update>
+	<resultMap id="petList" type="aliaspetUpdate">
+
+		<result column="pet_id" property="petId" />
+		<result column="pet_name" property="petName" />
+        <result column="pet_sex" property="petSex" />
+		<result column="pet_birth" property="petBirth" />
+		<result column="pet_death" property="petDeath" />
+		<result column="species_id" property="speciesId" />
+		<result column="owner_id" property="ownerID" />
+		
+	</resultMap>
+	<select id="getAllPet" resultMap="petList">
+		select * from pet
+	</select>
+	
+	
+</mapper>
